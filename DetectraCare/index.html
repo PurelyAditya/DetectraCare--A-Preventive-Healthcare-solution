@@ -1,0 +1,3103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DetectraCare | Advanced Health Intelligence</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- PREMIUM DESIGN SYSTEM --- */
+        :root {
+            /* Primary Palette - Luxe Emerald */
+            --primary: #00d4aa;
+            --primary-dark: #00b894;
+            --primary-light: #55efc4;
+            --primary-glow: rgba(0, 212, 170, 0.35);
+
+            /* Accent - Electric Violet */
+            --accent: #a855f7;
+            --accent-dark: #9333ea;
+            --accent-glow: rgba(168, 85, 247, 0.35);
+
+            /* Status Colors */
+            --risk-high: #ff6b6b;
+            --risk-mid: #feca57;
+            --risk-low: #00d4aa;
+
+            /* Dark Mode (Default) */
+            --bg-body: #0a0f1a;
+            --bg-surface: #12192a;
+            --bg-elevated: #1a2235;
+            --bg-glass: rgba(18, 25, 42, 0.95);
+
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --text-subtle: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+
+            /* Section Accent Colors */
+            --color-vitals: #00d4aa;
+            --color-lifestyle: #a855f7;
+            --color-nutrition: #3b82f6;
+            --color-history: #f472b6;
+
+            /* Spacing & Radius */
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --radius-sm: 8px;
+
+            /* Premium Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.35);
+            --shadow-glow: 0 0 40px var(--primary-glow);
+            --shadow-btn: 0 4px 20px rgba(0, 212, 170, 0.25);
+
+            /* Animation */
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body.light-mode {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-elevated: #f1f5f9;
+            --bg-glass: rgba(255, 255, 255, 0.97);
+
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-subtle: #64748b;
+            --border-color: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(15, 23, 42, 0.15);
+
+            /* Light Mode Section Colors */
+            --color-vitals: #059669;
+            --color-lifestyle: #7c3aed;
+            --color-nutrition: #2563eb;
+            --color-history: #db2777;
+
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-btn: 0 4px 20px rgba(0, 212, 170, 0.15);
+        }
+
+        /* --- LIGHT MODE OVERRIDES --- */
+        body.light-mode .theme-pill {
+            background: rgba(15, 23, 42, 0.04);
+        }
+
+        body.light-mode .btn-secondary:hover {
+            background: rgba(15, 23, 42, 0.04);
+        }
+
+        body.light-mode .checkbox-pill:hover span {
+            background: rgba(15, 23, 42, 0.04);
+        }
+
+        body.light-mode .styled-input,
+        body.light-mode .styled-select {
+            background: #ffffff;
+            border-color: rgba(15, 23, 42, 0.12);
+        }
+
+        body.light-mode .feature-card {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        body.light-mode .facts-container {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-mode .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(15, 23, 42, 0.08);
+        }
+
+        /* Light Mode - Solid Text (replace gradients) */
+        body.light-mode .brand span {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            -webkit-text-fill-color: var(--primary-dark);
+            color: var(--primary-dark);
+        }
+
+        body.light-mode .hero-text h1 span {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            -webkit-text-fill-color: var(--primary-dark);
+            color: var(--primary-dark);
+        }
+
+        body.light-mode .section-header h2 {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            -webkit-text-fill-color: var(--text-main);
+            color: var(--text-main);
+        }
+
+        body.light-mode .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        body.light-mode .tab-item.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        body.light-mode .checkbox-pill input:checked+span {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        body.light-mode .analyze-btn {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        body.light-mode .sidebar-link.special {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Premium Background Gradient Mesh */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% -20%, rgba(0, 212, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body.light-mode::before {
+            background:
+                radial-gradient(ellipse 80% 50% at 20% -20%, rgba(0, 212, 170, 0.04) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--primary-dark), var(--accent-dark));
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        button {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.025em;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Glass Utility */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px) saturate(120%);
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Section Colors Utility */
+        .text-vitals {
+            color: var(--color-vitals) !important;
+        }
+
+        .text-lifestyle {
+            color: var(--color-lifestyle) !important;
+        }
+
+        .text-nutrition {
+            color: var(--color-nutrition) !important;
+        }
+
+        .text-history {
+            color: var(--color-history) !important;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1280px;
+            padding: 14px 28px;
+            border-radius: 100px;
+            background: rgba(10, 15, 26, 0.92);
+            backdrop-filter: blur(10px) saturate(130%);
+            -webkit-backdrop-filter: blur(10px) saturate(130%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 100px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.2), rgba(168, 85, 247, 0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .navbar.scrolled {
+            top: 12px;
+            padding: 10px 24px;
+            background: rgba(10, 15, 26, 0.95);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        body.light-mode .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+
+        .brand span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% center;
+            }
+
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .theme-pill:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        body.light-mode .theme-pill:hover,
+        body.light-mode .menu-btn:hover {
+            background: rgba(15, 23, 42, 0.06);
+        }
+
+        .theme-pill span {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-btn {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-btn:hover {
+            background: var(--primary);
+            color: #0a0f1a;
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 340px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            border-left: 1px solid var(--border-color);
+            z-index: 2000;
+            transition: var(--transition-bounce);
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 26, 0.7);
+            z-index: 1999;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-link {
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 6px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(0, 212, 170, 0.06);
+            color: var(--primary);
+            border-color: rgba(0, 212, 170, 0.15);
+            transform: translateX(6px);
+        }
+
+        .sidebar-link.special {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #0a0f1a;
+            justify-content: center;
+            margin-top: 20px;
+            box-shadow: 0 6px 24px var(--primary-glow);
+            font-weight: 700;
+            border-radius: var(--radius-lg);
+        }
+
+        .sidebar-link.special:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px var(--primary-glow);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 160px 5% 100px;
+            overflow: hidden;
+        }
+
+        .hero-bg-glow {
+            position: absolute;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+            top: -30%;
+            right: -15%;
+            z-index: -1;
+            filter: blur(100px);
+            animation: floatOrb 15s ease-in-out infinite alternate;
+        }
+
+        .hero-bg-glow-2 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            bottom: -20%;
+            left: -15%;
+            z-index: -1;
+            filter: blur(100px);
+            animation: floatOrb2 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                opacity: 0.4;
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: translate(-30px, 30px) scale(1.05);
+            }
+
+            100% {
+                opacity: 0.5;
+                transform: translate(20px, -20px) scale(1.1);
+            }
+        }
+
+        @keyframes floatOrb2 {
+            0% {
+                opacity: 0.3;
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: translate(40px, -20px) scale(1.08);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: translate(-20px, 40px) scale(1);
+            }
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 100px;
+            max-width: 1400px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3rem, 5.5vw, 5rem);
+            line-height: 1.08;
+            margin-bottom: 32px;
+            letter-spacing: -0.04em;
+            font-weight: 800;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 40%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 540px;
+            line-height: 1.75;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #0a0f1a;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: var(--shadow-btn);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--primary-glow);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(0, 212, 170, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* --- LIVE FACTS COMPONENT --- */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .facts-container {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            min-height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .facts-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 5px 0 0 5px;
+        }
+
+        .facts-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .fact-text {
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.35;
+            min-height: 4.5em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: cursorBlink 1s step-end infinite;
+            color: var(--primary);
+            margin-left: 4px;
+            font-weight: 300;
+        }
+
+        @keyframes cursorBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .fact-source {
+            margin-top: 24px;
+            font-size: 0.875rem;
+            color: var(--text-subtle);
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            width: fit-content;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- FEATURES GRID --- */
+        .features {
+            padding: 120px 5%;
+            background: var(--bg-body);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            backdrop-filter: blur(6px);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 1px;
+            background: linear-gradient(135deg, transparent, rgba(0, 212, 170, 0.15), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md), 0 0 40px var(--primary-glow);
+            border-color: var(--border-hover);
+        }
+
+        .feature-card h3 {
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 20px 0 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* --- RISK FORM (Premium) --- */
+        .risk-section {
+            padding: 120px 5%;
+            position: relative;
+        }
+
+        .risk-container {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            border-radius: var(--radius-xl);
+            padding: 64px;
+            max-width: 1080px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .risk-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+            background-size: 200% 100%;
+            animation: gradientFlow 4s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-left: 4px;
+        }
+
+        .styled-input,
+        .styled-select {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 16px 18px;
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            width: 100%;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .styled-input::placeholder {
+            color: var(--text-subtle);
+        }
+
+        .styled-input:focus,
+        .styled-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+            outline: none;
+            background: var(--bg-elevated);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .checkbox-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .checkbox-pill {
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+
+        .checkbox-pill input {
+            display: none;
+        }
+
+        .checkbox-pill span {
+            display: inline-block;
+            padding: 10px 18px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            transition: var(--transition-bounce);
+        }
+
+        .checkbox-pill:hover span {
+            background: var(--bg-elevated);
+            border-color: var(--border-hover);
+            color: var(--text-main);
+        }
+
+        .checkbox-pill input:checked+span {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #0a0f1a;
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px var(--primary-glow);
+            font-weight: 600;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            margin-top: 48px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #0a0f1a;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-btn);
+            transition: var(--transition-smooth);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analyze-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: 0.6s;
+        }
+
+        .analyze-btn:hover::before {
+            left: 100%;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px var(--primary-glow);
+        }
+
+        .analyze-btn:active {
+            transform: translateY(-1px) scale(0.99);
+        }
+
+        /* --- MODAL SYSTEM --- */
+        .modal-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 26, 0.85);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .modal-wrap.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-card {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            width: 92%;
+            max-width: 520px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(0, 0, 0, 0.4);
+            transform: scale(0.92) translateY(20px);
+            transition: var(--transition-bounce);
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .modal-wrap.open .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        /* --- PREMIUM MODAL CLOSE BUTTON --- */
+        .modal-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-surface);
+            /* Ensures header matches theme */
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(128, 128, 128, 0.1);
+            /* Subtle neutral background */
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1;
+            transition: all var(--transition-smooth);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        /* Hover Effect - Glows Red (Risk Color) */
+        .close-btn:hover {
+            background: var(--risk-high);
+            color: #ffffff;
+            border-color: var(--risk-high);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Light Mode Specific Adjustment */
+        body.light-mode .close-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-mode .close-btn:hover {
+            background: #ff4757;
+            /* Slightly brighter red for light mode */
+        }
+
+        .modal-body {
+            padding: 32px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .tab-group {
+            display: flex;
+            background: var(--bg-body);
+            padding: 6px;
+            border-radius: var(--radius-md);
+            margin-bottom: 28px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-item {
+            flex: 1;
+            padding: 14px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-item:hover:not(.active) {
+            color: var(--text-main);
+        }
+
+        .tab-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #0a0f1a;
+            box-shadow: 0 4px 16px var(--primary-glow);
+        }
+
+        /* Dashboard Circle - Pure CSS Gauge */
+        .score-wrapper {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            margin: 0 auto 30px;
+            overflow: hidden;
+        }
+
+        .score-arc {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 20px solid var(--border-color);
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            transform: rotate(-45deg);
+        }
+
+        .score-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 20px solid var(--primary);
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            transform: rotate(-45deg);
+            transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .score-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--text-main);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media(max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 40px;
+            }
+
+            .cta-group {
+                justify-content: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: span 1;
+            }
+
+            .navbar {
+                padding: 12px 16px;
+                width: 95%;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 30px;
+            }
+
+            .risk-container {
+                padding: 40px 24px;
+            }
+
+            .facts-container {
+                padding: 30px;
+                min-height: 280px;
+            }
+
+            .modal-card {
+                width: 95%;
+                max-width: 95%;
+                border-radius: var(--radius-lg);
+            }
+        }
+
+        @media(max-width: 600px) {
+            .hero {
+                padding: 120px 4% 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .navbar {
+                top: 12px;
+                padding: 10px 14px;
+            }
+
+            .brand span {
+                font-size: 1.2rem;
+            }
+
+            .brand img {
+                height: 32px;
+            }
+
+            .nav-actions .btn-primary {
+                display: none;
+            }
+
+            .theme-pill span:last-child {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .features {
+                padding: 60px 4%;
+            }
+
+            .risk-section {
+                padding: 60px 4%;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-group .btn-primary,
+            .cta-group .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .checkbox-container {
+                gap: 8px;
+            }
+
+            .checkbox-pill span {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            .analyze-btn {
+                padding: 16px;
+                font-size: 1rem;
+            }
+        }
+
+        @media(max-width: 400px) {
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            .navbar {
+                border-radius: 50px;
+            }
+
+            .menu-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .theme-pill {
+                padding: 8px 12px;
+            }
+        }
+
+        /* Auth Form Logic */
+        .auth-form {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="brand">
+            <img src="logo.png" alt="DetectraCare Logo"
+                style="height: 40px; width: auto; border-radius: 50%; background-color: black;">
+            <span>DetectraCare</span>
+        </a>
+        <div class="nav-actions">
+            <button onclick="openModal('auth'); switchAuthTab('login')" class="btn-primary"
+                style="padding:10px 24px; font-size:1rem; box-shadow:none; margin-left:10px;">My Profile</button>
+
+            <div style="width:1px; height:24px; background:var(--border-color); margin:0 10px;"></div>
+
+            <div style="width:1px; height:24px; background:var(--border-color); margin:0 10px;"></div>
+
+            <button class="theme-pill" id="themeToggle" onclick="cycleTheme()" aria-label="Toggle Theme">
+                <span id="themeIcon">🌓</span>
+                <span id="themeText">System</span>
+            </button>
+            <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu" style="margin-left:5px;">☰</button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            <button onclick="toggleSidebar()"
+                style="background:none; color:#1a2235 var(--text-muted); font-size:1.5rem;">✕</button>
+        </div>
+
+        <a href="#" class="sidebar-link" onclick="toggleSidebar(); openModal('auth'); switchAuthTab('login')">👤 Login /
+            Sign Up</a>
+
+
+
+        <a href="#" class="sidebar-link" id="dashboardSidebarLink" onclick="handleDashboardClick()">
+            📊 Dashboard
+            <span id="dashboardLockBadge"
+                style="font-size:0.7em; background:var(--primary); color:white; padding:2px 6px; border-radius:4px; margin-left:auto;">LOCKED</span>
+        </a>
+
+        <button id="signOutBtn" class="btn-primary"
+            style="display:flex; align-items: center; width:100%; margin: 10px 0; padding:16px; justify-content:center; box-shadow:none; border-radius: var(--radius-md); font-family: 'Outfit', sans-serif; font-weight: 700; letter-spacing: 0.01em;"
+            onclick="handleSignOut()">
+            Sign Out</button>
+        <div style="width:1px; height:24px; background:var(--border-color); margin:0 10px;"></div>
+
+
+        <a href="#risk-checker" class="sidebar-link" onclick="toggleSidebar()">🧬 Health Assessment</a>
+        <div style="border-top:1px solid var(--border-color); margin: 20px 0;"></div>
+        <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:15px; letter-spacing:1px; font-weight:700;">
+
+            AI TOOLS</p>
+        <button class="sidebar-link special" style="background: linear-gradient(135deg, var(--primary), #8b5cf6);"
+            onclick="toggleSidebar(); openModal('nutrition')">✨ Smart Nutrition Planner</button>
+        <button class="sidebar-link" onclick="toggleSidebar(); document.body.classList.add('show-chatbot')"
+            style="justify-content:center; border: 1px solid var(--primary); color: var(--primary); margin-top: 10px; font-weight:600;">
+            💬 Talk to Health Buddy
+        </button>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="hero-bg-glow-2"></div>
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Predict Early.<br>Prevent Smarter.<br><span>Live Longer.</span></h1>
+                <p>An intelligent health companion that combines advanced medical heuristics with data-driven lifestyle
+                    planning to detect risks before they become reality.</p>
+                <div class="cta-group">
+                    <a href="#risk-checker" class="btn-primary">Start Health Check</a>
+                    <button onclick="openModal('ai')" class="btn-secondary">Our Tools</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="facts-container">
+                    <p
+                        style="color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem;">
+                        Did You Know?</p>
+                    <div id="dynamicFact" class="fact-text typing-cursor"></div>
+                    <div class="fact-source" id="factSource" style="opacity: 0; transition: opacity 0.5s;">
+                        Source: Global Health Data
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="section-header">
+            <h2>Why DetectraCare?</h2>
+            <p>From predictive algorithms to lifestyle corrections, we cover every angle of your well-being.</p>
+        </div>
+        <div class="bento-grid">
+            <div class="feature-card" onmousemove="handleMouseMove(event)">
+                <div style="font-size:3rem; margin-bottom:20px; filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.4));">
+                    🧬</div>
+                <h3>Bio-Digital Twin Engine</h3>
+                <p>Harnessing deep neural networks to forecast health trajectories with clinical precision before
+                    symptoms even manifest.</p>
+            </div>
+            <div class="feature-card" onmousemove="handleMouseMove(event)">
+                <div style="font-size:3rem; margin-bottom:20px; filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4));">
+                    �</div>
+                <h3>Neuro-Adaptive Sync</h3>
+                <p>Real-time optimization of your circadian rhythms and cognitive load using advanced chronobiology
+                    algorithms.</p>
+            </div>
+            <div class="feature-card" onmousemove="handleMouseMove(event)">
+                <div style="font-size:3rem; margin-bottom:20px; filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));">
+                    ⚛️</div>
+                <h3>Metabolic Precision Matrix</h3>
+                <p>Hyper-personalized molecular nutrition mapping that evolves dynamically with your unique biochemical
+                    signature.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Checker -->
+    <section class="risk-section" id="risk-checker">
+        <div class="section-header">
+            <h2>Health Assessment</h2>
+            <p>Fill in your details for a complete body, mind, and lifestyle checkup.</p>
+        </div>
+
+        <div class="risk-container">
+            <div class="form-grid">
+                <!-- Section 1: Vitals & Bio -->
+                <div class="full-width">
+                    <h4
+                        style="color:var(--primary); margin-bottom:-10px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+                        1. Clinical Vitals</h4>
+                </div>
+
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="riskAge" class="styled-input" placeholder="Years">
+                </div>
+                <div class="input-group">
+                    <label>Gender</label>
+                    <select id="riskGender" class="styled-select">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Weight (kg)</label>
+                    <input type="number" id="riskWeight" class="styled-input" placeholder="kg">
+                </div>
+                <div class="input-group">
+                    <label>Height (cm)</label>
+                    <input type="number" id="riskHeight" class="styled-input" placeholder="cm">
+                </div>
+
+                <!-- New Vitals -->
+                <div class="input-group">
+                    <label>Systolic BP (mmHg)</label>
+                    <input type="number" id="riskBP_Sys" class="styled-input" placeholder="e.g. 120">
+                </div>
+                <div class="input-group">
+                    <label>Diastolic BP (mmHg)</label>
+                    <input type="number" id="riskBP_Dia" class="styled-input" placeholder="e.g. 80">
+                </div>
+                <div class="input-group">
+                    <label>Resting Heart Rate (BPM)</label>
+                    <input type="number" id="riskHR" class="styled-input" placeholder="e.g. 72">
+                </div>
+                <div class="input-group">
+                    <label>Waist Circumference (cm)</label>
+                    <input type="number" id="riskWaist" class="styled-input" placeholder="Optional for Metabolic calc">
+                </div>
+
+                <!-- Section 2: Lifestyle & Mental -->
+                <div class="full-width">
+                    <h4
+                        style="color:var(--accent); margin-top:20px; margin-bottom:-10px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+                        2. Lifestyle & Mental Health</h4>
+                </div>
+
+                <div class="input-group">
+                    <label>Sleep Quality</label>
+                    <select id="riskSleep" class="styled-select">
+                        <option value="good">7-9 Hours (Restful)</option>
+                        <option value="bad">&lt; 6 Hours (Poor)</option>
+                        <option value="oversleep">> 10 Hours</option>
+                        <option value="insomnia">Chronic Insomnia</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Daily Stress Level</label>
+                    <select id="riskStress" class="styled-select">
+                        <option value="low">Low (Managed)</option>
+                        <option value="moderate">Moderate (Occasional)</option>
+                        <option value="high">High (Frequent)</option>
+                        <option value="panic">Severe / Burnout</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Activity Level</label>
+                    <select id="riskActivity" class="styled-select">
+                        <option value="sedentary">Sedentary (Office job, no gym)</option>
+                        <option value="light">Light (Walking, 1-2x/week)</option>
+                        <option value="moderate">Moderate (3-4x/week)</option>
+                        <option value="active">Active (Daily intense exercise)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Smoking / Alcohol</label>
+                    <select id="riskHabits" class="styled-select">
+                        <option value="none">None</option>
+                        <option value="alcohol_social">Social Drinker</option>
+                        <option value="alcohol_heavy">Heavy Drinker</option>
+                        <option value="smoking">Smoker</option>
+                        <option value="both">Smoker & Drinker</option>
+                    </select>
+                </div>
+
+                <!-- Section 3: Nutritional Detail -->
+                <div class="full-width">
+                    <h4
+                        style="color:#3b82f6; margin-top:20px; margin-bottom:-10px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+                        3. Nutritional Profile</h4>
+                </div>
+
+                <div class="input-group">
+                    <label>Diet Type</label>
+                    <select id="riskDietType" class="styled-select">
+                        <option value="omnivore">Omnivore</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="keto">Keto / Low Carb</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Processed Food Intake</label>
+                    <select id="riskProcessed" class="styled-select">
+                        <option value="rare">Rarely</option>
+                        <option value="weekly">1-2 times/week</option>
+                        <option value="often">3-5 times/week</option>
+                        <option value="daily">Daily</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Sugar Intake</label>
+                    <select id="riskSugar" class="styled-select">
+                        <option value="low">Low (Water/Coffee)</option>
+                        <option value="moderate">Moderate (Occasional sweets)</option>
+                        <option value="high">High (Soda/Desserts daily)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Hydration</label>
+                    <select id="riskHydration" class="styled-select">
+                        <option value="adequate">Adequate (>2L)</option>
+                        <option value="low">Low (&lt;1L)</option>
+                        <option value="high">High (>3L)</option>
+                    </select>
+                </div>
+
+                <!-- Section 4: History & Symptoms -->
+                <div class="full-width">
+                    <h4
+                        style="color:var(--risk-high); margin-top:20px; margin-bottom:10px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+                        4. History & Symptoms</h4>
+                </div>
+
+                <!-- Symptoms Checkboxes -->
+                <div class="full-width">
+                    <label style="margin-bottom:12px; display:block;">Current Symptoms</label>
+                    <div class="checkbox-container">
+                        <label class="checkbox-pill"><input type="checkbox" value="fatigue"
+                                class="symptom-check"><span>Fatigue</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="dizzy"
+                                class="symptom-check"><span>Dizziness</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="breath"
+                                class="symptom-check"><span>Shortness of Breath</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="thirst"
+                                class="symptom-check"><span>Excess Thirst/Hunger</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="pain"
+                                class="symptom-check"><span>Chest Pain</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="palpitations"
+                                class="symptom-check"><span>Heart Palpitations</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="headache"
+                                class="symptom-check"><span>Frequent Headaches</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="vision"
+                                class="symptom-check"><span>Blurred Vision</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="swelling"
+                                class="symptom-check"><span>Swelling (Edema)</span></label>
+                    </div>
+                </div>
+
+                <div class="full-width">
+                    <label style="margin-bottom:12px; display:block;">Family History (Immediate Family)</label>
+                    <div class="checkbox-container">
+                        <label class="checkbox-pill"><input type="checkbox" value="fam_diabetes"
+                                class="fam-check"><span>Type 2 Diabetes</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="fam_bp"
+                                class="fam-check"><span>Hypertension</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="fam_heart"
+                                class="fam-check"><span>Heart Attack/Stroke</span></label>
+                        <label class="checkbox-pill"><input type="checkbox" value="fam_cancer"
+                                class="fam-check"><span>Cancer</span></label>
+                    </div>
+                </div>
+
+                <div class="full-width">
+                    <button class="analyze-btn" onclick="calculateRisk()">Generate Comprehensive Report 🧬</button>
+                    <div id="riskResult" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+        style="padding: 60px 5%; text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); background: var(--bg-body);">
+        <p style="font-weight:600; font-size:1.1rem; color:var(--text-main); margin-bottom:10px;">DetectraCare Inc.</p>
+        <p>© 2026 Building the future of preventive healthcare.</p>
+        <p style="margin-top: 20px; opacity: 0.6; max-width: 500px; margin-left: auto; margin-right: auto;">⚠️
+            Disclaimer: This tool provides health insights for informational purposes only and is not a medical
+            diagnosis. Always consult a professional.</p>
+    </footer>
+
+    <!-- MODALS -->
+
+    <div class="modal-wrap" id="authModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h4 id="authTitle">Welcome Back</h4>
+                <button class="close-btn" onclick="closeModals()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-group">
+                    <div class="tab-item active" onclick="switchAuthTab('login')">Login</div>
+                    <div class="tab-item" onclick="switchAuthTab('signup')">Sign Up</div>
+                </div>
+
+                <div id="loginForm" class="auth-form active">
+                    <div class="input-group" style="margin-bottom:20px;">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" class="styled-input" placeholder="you@example.com">
+                    </div>
+                    <div class="input-group" style="margin-bottom:30px;">
+                        <label>Password</label>
+                        <input type="password" id="loginPass" class="styled-input" placeholder="••••••••">
+                    </div>
+                    <button class="analyze-btn" style="margin-top:0;" onclick="handleLogin()">Access Dashboard</button>
+                    <div id="loginError"
+                        style="color: var(--risk-high); font-size: 0.85rem; margin-top: 10px; text-align: center; display: none;">
+                    </div>
+                    <p style="text-align:center; margin-top:20px; font-size:0.9rem; color:var(--text-secondary);">
+                        Don't have an account? <span onclick="switchAuthTab('signup')"
+                            style="color:var(--primary); cursor:pointer; font-weight:600;">Sign Up</span>
+                    </p>
+                </div>
+
+                <div id="signupForm" class="auth-form">
+                    <div class="input-group" style="margin-bottom:15px;">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" class="styled-input" placeholder="John Doe">
+                    </div>
+                    <div class="input-group" style="margin-bottom:15px;">
+                        <label>Email</label>
+                        <input type="email" id="signupEmail" class="styled-input" placeholder="you@example.com">
+                    </div>
+                    <div class="input-group" style="margin-bottom:15px;">
+                        <label>Password</label>
+                        <input type="password" id="signupPass" class="styled-input" placeholder="Create Password">
+                    </div>
+                    <div class="input-group" style="margin-bottom:25px;">
+                        <label>Confirm Password</label>
+                        <input type="password" id="signupConfirm" class="styled-input" placeholder="Confirm Password">
+                    </div>
+                    <button class="analyze-btn" style="margin-top:0;" onclick="handleSignup()">Create Account</button>
+                    <div id="signupError"
+                        style="color: var(--risk-high); font-size: 0.85rem; margin-top: 10px; text-align: center; display: none;">
+                    </div>
+                    <p style="text-align:center; margin-top:20px; font-size:0.9rem; color:var(--text-secondary);">
+                        Already have an account? <span onclick="switchAuthTab('login')"
+                            style="color:var(--primary); cursor:pointer; font-weight:600;">Login</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-wrap" id="aiModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h4>Smart Nutrition Planner</h4>
+                <button class="close-btn" onclick="closeModals()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Ask our AI...</label>
+                    <textarea id="dietInput" class="styled-input"
+                        style="height: 150px; resize: none; line-height:1.6; border-radius: 24px;"
+                        placeholder="e.g. Give me a low-sodium dinner recipe using spinach and chicken..."></textarea>
+                </div>
+                <button class="analyze-btn" style="margin-top:25px; background: var(--accent);"
+                    onclick="handleNutritionPlan()">Suggest Diet
+                    ✨</button>
+                <div id="dietResult"
+                    style="margin-top: 20px; color: var(--text-main); font-size: 0.95rem; line-height: 1.6;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard/Result Modal -->
+    <div class="modal-wrap" id="dashboardModal">
+        <div class="modal-card" style="max-width: 600px;">
+            <div class="modal-header">
+                <h4>Your Wellness Score</h4>
+                <button class="close-btn" onclick="closeModals()">✕</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+
+                <div class="score-wrapper">
+                    <div class="score-arc"></div>
+                    <div class="score-fill" id="scoreFill"></div>
+                    <div class="score-text" id="dashScoreValue">0</div>
+                </div>
+
+                <h3 id="dashMessage" style="color: var(--primary); margin-bottom: 10px; font-size: 1.5rem;">Great
+                    Condition!</h3>
+                <p id="dashDetails" style="color: var(--text-muted); font-size: 1rem; margin-bottom: 30px;">Based on
+                    your inputs, here is your personalized breakdown.</p>
+
+                <div id="recommendations"
+                    style="text-align: left; background: var(--bg-body); padding: 25px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                </div>
+
+                <div id="historySection" style="margin-top: 30px; text-align: left; display: none;">
+                    <h5
+                        style="color: var(--text-muted); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; font-size: 0.9rem; letter-spacing: 1px;">
+                        PREVIOUS ASSESSMENTS
+                    </h5>
+                    <div id="historyList" style="max-height: 250px; overflow-y: auto; padding: 10px 0;">
+                    </div>
+                </div>
+
+                <button class="analyze-btn" style="margin-top:30px;" onclick="closeModals()">Save to Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC0nFcWcJ6N7Cf-P9lV8tHeOVWvZHg_mYI",
+            authDomain: "detectracare-1be15.firebaseapp.com",
+            databaseURL: "https://detectracare-1be15-default-rtdb.firebaseio.com/",
+            projectId: "detectracare-1be15",
+            storageBucket: "detectracare-1be15.firebasestorage.app",
+            messagingSenderId: "1041143803655",
+            appId: "1:1041143803655:web:7ca1a2db63cde265825fa2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+        const genAI = new GoogleGenerativeAI("AIzaSyAoeNhEQTVEh7qC0Cqt3r6zZrRAJ6-Gon8");
+
+        // We attach these to 'window' so your old code can "see" them
+        window.db = db;
+        window.auth = auth;
+        window.dbRef = ref;
+        window.dbSet = set;
+        window.dbPush = push;
+        window.geminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+
+        onAuthStateChanged(auth, (user) => {
+            const authLink = document.querySelector('.sidebar-link[onclick*="auth"]');
+            const signOutBtn = document.getElementById('signOutBtn');
+            const lockBadge = document.getElementById('dashboardLockBadge');
+            const dashLink = document.getElementById('dashboardSidebarLink');
+
+            if (user) {
+                authLink.innerHTML = `👤 Profile: ${user.email.split('@')[0]}`;
+                if (signOutBtn) signOutBtn.style.display = 'flex';
+
+                // Update Dashboard UI for Logged In User
+                if (lockBadge) lockBadge.style.display = 'none';
+                loadUserHistory(user.uid);
+            } else {
+                authLink.innerHTML = `👤 Login / Sign Up`;
+                if (signOutBtn) signOutBtn.style.display = 'none';
+
+                // Update Dashboard UI for Logged Out User
+                if (lockBadge) lockBadge.style.display = 'block';
+            }
+        });
+
+    </script>
+
+    <script>
+        async function handleSignOut() {
+            try {
+                // Dynamically import the sign out tool
+                const { signOut } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js");
+
+                await signOut(window.auth); // Sign out from Firebase
+                toggleSidebar(); // Close the menu
+                alert("Signed out successfully!");
+            } catch (error) {
+                console.error("Error signing out:", error);
+            }
+        }
+
+
+        // --- UI LOGIC ---
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+
+        function handleDashboardClick() {
+            const user = window.auth.currentUser;
+            toggleSidebar(); // Close sidebar first
+
+            if (user) {
+                // User is logged in: Show the actual dashboard modal
+                openModal('dashboard');
+            } else {
+                // User is NOT logged in: Show the login modal
+                openModal('auth');
+                switchAuthTab('login');
+            }
+        }
+
+
+        // --- THEME LOGIC (System / Light / Dark) ---
+        const themeStates = ['system', 'dark', 'light'];
+        let currentThemeState = 'system';
+
+        function applyTheme(state) {
+            const body = document.body;
+            const html = document.documentElement; // Get the html element too
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+
+            // Reset both body and html
+            body.classList.remove('light-mode');
+            html.classList.remove('light-mode');
+
+            if (state === 'system') {
+                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (!systemDark) {
+                    body.classList.add('light-mode');
+                    html.classList.add('light-mode');
+                }
+                icon.innerText = '🌓';
+                text.innerText = 'System';
+            } else if (state === 'dark') {
+                // Default is dark, so no class needed
+                icon.innerText = '🌙';
+                text.innerText = 'Dark';
+            } else if (state === 'light') {
+                body.classList.add('light-mode');
+                html.classList.add('light-mode');
+                icon.innerText = '☀️';
+                text.innerText = 'Light';
+            }
+
+            // Save preference
+            localStorage.setItem('themeState', state);
+        }
+
+        function cycleTheme() {
+            const activeIndex = themeStates.indexOf(currentThemeState);
+            const nextIndex = (activeIndex + 1) % themeStates.length;
+            currentThemeState = themeStates[nextIndex];
+            applyTheme(currentThemeState);
+        }
+
+        // Init
+        (function initTheme() {
+            // const saved = localStorage.getItem('themeState');
+            // if (saved && themeStates.includes(saved)) currentThemeState = saved;
+            applyTheme(currentThemeState);
+
+            // Listener for system changes if in system mode
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (currentThemeState === 'system') applyTheme('system');
+            });
+        })();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Mouse Gradient for Cards
+        function handleMouseMove(e) {
+            const cards = document.getElementsByClassName("feature-card");
+            for (const card of cards) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            }
+        }
+
+        // Modals
+        function openModal(type) {
+            closeModals();
+            if (type === 'ai' || type === 'nutrition') document.getElementById('aiModal').classList.add('open');
+            else if (type === 'dashboard') document.getElementById('dashboardModal').classList.add('open');
+            else {
+                document.getElementById('authModal').classList.add('open');
+                switchAuthTab('login'); // Reset to login
+            }
+        }
+
+        function switchAuthTab(tab) {
+            const tabs = document.querySelectorAll('.tab-item');
+            const forms = document.querySelectorAll('.auth-form');
+            const title = document.getElementById('authTitle');
+
+            // Clear errors
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('signupError').style.display = 'none';
+
+            if (tab === 'login') {
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
+                document.getElementById('loginForm').classList.add('active');
+                document.getElementById('signupForm').classList.remove('active');
+                title.innerText = 'Welcome Back';
+            } else {
+                tabs[0].classList.remove('active');
+                tabs[1].classList.add('active');
+                document.getElementById('loginForm').classList.remove('active');
+                document.getElementById('signupForm').classList.add('active');
+                title.innerText = 'Create Account';
+            }
+        }
+
+        // --- UPDATED AUTH LOGIC (Firebase) ---
+        async function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            const errorBox = document.getElementById('loginError');
+
+            errorBox.style.display = 'none';
+
+            try {
+                // Firebase checks the credentials
+                await window.signInWithEmailAndPassword(window.auth, email, pass);
+                alert("Welcome back!");
+                closeModals();
+            } catch (error) {
+                showError(errorBox, "Login failed: " + error.message);
+            }
+        }
+
+        async function handleSignup() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const pass = document.getElementById('signupPass').value;
+            const confirm = document.getElementById('signupConfirm').value;
+            const errorBox = document.getElementById('signupError');
+
+            if (pass !== confirm) {
+                showError(errorBox, 'Passwords do not match.');
+                return;
+            }
+
+            try {
+                // 1. Create account in Firebase Auth
+                const result = await window.createUserWithEmailAndPassword(window.auth, email, pass);
+
+                // 2. Save name to the Database folder
+                await window.dbSet(window.dbRef(window.db, 'users/' + result.user.uid), {
+                    fullName: name,
+                    email: email,
+                    signUpDate: new Date().toISOString()
+                });
+
+                alert(`Account created for ${name}!`);
+                closeModals();
+            } catch (error) {
+                showError(errorBox, "Error: " + error.message);
+            }
+        }
+
+        function showError(element, message) {
+            element.innerText = message;
+            element.style.display = 'block';
+            element.animate([
+                { transform: 'translateX(-5px)' },
+                { transform: 'translateX(5px)' },
+                { transform: 'translateX(0)' }
+            ], { duration: 300 });
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function closeModals() {
+            document.querySelectorAll('.modal-wrap').forEach(m => m.classList.remove('open'));
+        }
+
+        document.querySelectorAll('.modal-wrap').forEach(m => {
+            m.addEventListener('click', (e) => { if (e.target === m) closeModals(); });
+        });
+
+        // --- TYPEWRITER FACTS LOGIC ---
+        const facts = [
+            { text: "80% of premature heart disease and strokes are preventable through lifestyle changes.", source: "World Health Organization" },
+            { text: "Regular physical activity can reduce the risk of depression by up to 30%.", source: "National Institute of Health" },
+            { text: "Type 2 diabetes is largely preventable by maintaining a healthy weight and diet.", source: "CDC Prevention Guidelines" },
+            { text: "Early detection of cancer can increase 5-year survival rates to over 90%.", source: "American Cancer Society" },
+            { text: "Sleeping less than 6 hours dramatically increases inflammation markers.", source: "Sleep Research Society" }
+        ];
+
+        const factText = document.getElementById('dynamicFact');
+        const factSource = document.getElementById('factSource');
+        let factIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isWaiting = false;
+
+        function type() {
+            const currentFact = facts[factIndex];
+
+            if (isWaiting) return;
+
+            if (isDeleting) {
+                factText.innerText = currentFact.text.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    factIndex = (factIndex + 1) % facts.length;
+                    factSource.style.opacity = '0';
+                }
+            } else {
+                factText.innerText = currentFact.text.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentFact.text.length) {
+                    isWaiting = true;
+                    factSource.innerText = "Source: " + currentFact.source;
+                    factSource.style.opacity = '1';
+
+                    setTimeout(() => {
+                        isDeleting = true;
+                        isWaiting = false;
+                        requestAnimationFrame(type);
+                    }, 4000);
+                    return;
+                }
+            }
+
+            const speed = isDeleting ? 30 : 50;
+            setTimeout(type, speed);
+        }
+
+        setTimeout(type, 1000);
+
+        // --- ADVANCED RISK CALCULATION LOGIC ---
+        function calculateRisk() {
+            const age = parseInt(document.getElementById('riskAge').value) || 0;
+            const weight = parseFloat(document.getElementById('riskWeight').value) || 0;
+            const height = parseFloat(document.getElementById('riskHeight').value) || 0;
+            const gender = document.getElementById('riskGender').value;
+
+            const sysBP = parseInt(document.getElementById('riskBP_Sys').value) || 120;
+            const diaBP = parseInt(document.getElementById('riskBP_Dia').value) || 80;
+            const restingHR = parseInt(document.getElementById('riskHR').value) || 72;
+            const waist = parseFloat(document.getElementById('riskWaist').value) || 0;
+
+            const sleep = document.getElementById('riskSleep').value;
+            const stress = document.getElementById('riskStress').value;
+            const activity = document.getElementById('riskActivity').value;
+            const habits = document.getElementById('riskHabits').value;
+
+            const processed = document.getElementById('riskProcessed').value;
+            const sugar = document.getElementById('riskSugar').value;
+
+            const symptoms = Array.from(document.querySelectorAll('.symptom-check:checked')).map(cb => cb.value);
+            const history = Array.from(document.querySelectorAll('.fam-check:checked')).map(cb => cb.value);
+
+            if (!age || !weight || !height) {
+                alert("Please complete the basic Clinical Vitals (Age, Weight, Height) at minimum.");
+                return;
+            }
+
+            const bmi = weight / ((height / 100) ** 2);
+
+            // 2. Define Disease Models
+            const risks = {
+                diabetes: { id: 'diabetes', name: 'Type 2 Diabetes', score: 0, level: "", reasons: [], action: "" },
+                hypertension: { id: 'hypertension', name: 'Hypertension', score: 0, level: "", reasons: [], action: "" },
+                cardiovascular: { id: 'cvd', name: 'Cardiovascular Disease', score: 0, level: "", reasons: [], action: "" },
+                mentalHealth: { id: 'mental', name: 'Mental Wellbeing', score: 0, level: "", reasons: [], action: "" },
+                lifestyle: { id: 'life', name: 'General Lifestyle', score: 0, level: "", reasons: [], action: "" }
+            };
+
+            // Helper: Classify Score
+            function classify(score, thresholds) {
+                if (score >= thresholds.high) return "High";
+                if (score >= thresholds.moderate) return "Moderate";
+                return "Low";
+            }
+
+            // --- A. Diabetes Logic ---
+            let d = 0;
+            if (bmi > 30) { d += 3; risks.diabetes.reasons.push("Obesity (BMI > 30)"); }
+            else if (bmi > 25) { d += 2; risks.diabetes.reasons.push("Overweight (BMI > 25)"); }
+
+            if (age > 45) { d += 2; risks.diabetes.reasons.push("Age > 45"); }
+            if (history.includes('fam_diabetes')) { d += 3; risks.diabetes.reasons.push("Family History"); }
+            if (activity === 'sedentary') { d += 2; risks.diabetes.reasons.push("Sedentary Lifestyle"); }
+            if (sugar === 'high') { d += 2; risks.diabetes.reasons.push("High Sugar Intake"); }
+            if (symptoms.includes('thirst') || symptoms.includes('vision') || symptoms.includes('fatigue')) {
+                d += 2; risks.diabetes.reasons.push("Clinical Symptoms");
+            }
+
+            risks.diabetes.score = d;
+            risks.diabetes.level = classify(d, { moderate: 4, high: 7 });
+            risks.diabetes.action = risks.diabetes.level === "High" ? "HbA1c & Fasting Glucose screening needed." : "Reduce refined sugars and increase fiber.";
+
+            // --- B. Hypertension Logic ---
+            let h = 0;
+            if (sysBP >= 140 || diaBP >= 90) { h += 4; risks.hypertension.reasons.push("Stage 2 BP Reading"); }
+            else if (sysBP >= 130 || diaBP >= 80) { h += 2; risks.hypertension.reasons.push("Elevated BP Reading"); }
+
+            if (age > 50) { h += 1; risks.hypertension.reasons.push("Age > 50"); }
+            if (habits.includes('smoking') || habits === 'both') { h += 2; risks.hypertension.reasons.push("Smoking"); }
+            if (stress === 'high' || stress === 'panic') { h += 2; risks.hypertension.reasons.push("High Stress Load"); }
+            if (activity === 'sedentary') { h += 1; risks.hypertension.reasons.push("Lack of Cardio"); }
+            if (history.includes('fam_bp')) { h += 2; risks.hypertension.reasons.push("Family History"); }
+
+            risks.hypertension.score = h;
+            risks.hypertension.level = classify(h, { moderate: 3, high: 6 });
+            risks.hypertension.action = risks.hypertension.level === "High" ? "Immediate BP monitoring required." : "Reduce sodium intake (<2g/day) and manage stress.";
+
+            // --- C. Mental Health Logic ---
+            let m = 0;
+            if (sleep === 'insomnia') { m += 3; risks.mentalHealth.reasons.push("Chronic Insomnia"); }
+            else if (sleep === 'bad') { m += 2; risks.mentalHealth.reasons.push("Poor Sleep Quality"); }
+
+            if (stress === 'panic') { m += 4; risks.mentalHealth.reasons.push("Severe Burnout / Panic"); }
+            else if (stress === 'high') { m += 2; risks.mentalHealth.reasons.push("High Stress"); }
+
+            if (activity === 'sedentary') { m += 1; risks.mentalHealth.reasons.push("Lack of movement"); }
+            if (symptoms.includes('fatigue') || symptoms.includes('headache')) { m += 1; risks.mentalHealth.reasons.push("Physical stress signs"); }
+
+            risks.mentalHealth.score = m;
+            risks.mentalHealth.level = classify(m, { moderate: 3, high: 6 });
+            risks.mentalHealth.action = risks.mentalHealth.level === "High" ? "Psychological consultation recommended." : "Prioritize sleep hygiene & mindfulness.";
+
+            // --- D. CVD Logic (Composite) ---
+            let c = 0;
+            if (risks.hypertension.level === "High") { c += 3; risks.cardiovascular.reasons.push("High Hypertension Risk"); }
+            if (risks.diabetes.level === "High") { c += 3; risks.cardiovascular.reasons.push("High Diabetes Risk"); }
+
+            if (history.includes('fam_heart')) { c += 3; risks.cardiovascular.reasons.push("Family History"); }
+            if (habits.includes('smoking') || habits === 'both') { c += 4; risks.cardiovascular.reasons.push("Smoking"); }
+            if (symptoms.includes('pain') || symptoms.includes('palpitations')) { c += 5; risks.cardiovascular.reasons.push("Warning Signs: Chest Pain"); }
+            if (bmi > 30) { c += 2; risks.cardiovascular.reasons.push("Obesity"); }
+
+            risks.cardiovascular.score = c;
+            risks.cardiovascular.level = classify(c, { moderate: 5, high: 8 });
+            risks.cardiovascular.action = risks.cardiovascular.level === "High" ? "URGENT: Cardiac evaluation recommended." : "Maintain cardio activity and low saturated fats.";
+
+            // --- 3. UI Generation ---
+            const totalRiskPoints = d + h + m + c;
+            let overallScore = Math.max(0, 100 - (totalRiskPoints * 2.5));
+
+            // Render Gauge
+            const deg = -135 + (1.8 * overallScore);
+            document.getElementById('scoreFill').style.transform = `rotate(${deg}deg)`;
+            document.getElementById('dashScoreValue').innerText = Math.round(overallScore);
+
+            const msg = document.getElementById('dashMessage');
+            if (overallScore > 80) { msg.innerText = "Optimal Health"; msg.style.color = "var(--primary)"; }
+            else if (overallScore > 50) { msg.innerText = "Moderate Risk Profile"; msg.style.color = "var(--risk-mid)"; }
+            else { msg.innerText = "Action Required"; msg.style.color = "var(--risk-high)"; }
+
+            document.getElementById('dashDetails').innerText = "Detailed Clinical Analysis:";
+
+            // Generate HTML
+            const recBox = document.getElementById('recommendations');
+            let html = "";
+            const models = [risks.cardiovascular, risks.diabetes, risks.hypertension, risks.mentalHealth];
+
+            models.forEach(model => {
+                let color = "var(--primary)";
+                let badgeBg = "rgba(16, 185, 129, 0.1)";
+
+                if (model.level === "Moderate") { color = "var(--risk-mid)"; badgeBg = "rgba(245, 158, 11, 0.1)"; }
+                if (model.level === "High") { color = "var(--risk-high)"; badgeBg = "rgba(239, 68, 68, 0.1)"; }
+
+                html += `
+                <div style="border-left: 4px solid ${color}; background: var(--bg-body); padding: 15px; margin-bottom: 15px; border-radius: 4px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <h5 style="font-size:1rem; font-weight:700; margin:0; color:var(--text-main);">${model.name}</h5>
+                        <span style="font-size:0.75rem; font-weight:700; padding:4px 10px; border-radius:100px; background:${badgeBg}; color:${color}; text-transform:uppercase;">
+                            ${model.level} Risk
+                        </span>
+                    </div>
+                    
+                    ${model.reasons.length > 0 ?
+                        `<div style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:6px;">
+                            <strong style="color:var(--text-muted)">Why:</strong> ${model.reasons.join(", ")}
+                        </div>` : ''
+                    }
+                    
+                    <div style="font-size:0.9rem; color:var(--text-main);">
+                        <strong style="color:${color}">Action:</strong> ${model.action}
+                    </div>
+                </div>`;
+            });
+
+            recBox.innerHTML = html;
+            saveReportToDatabase(overallScore, { age, weight, height, bmi }, risks);
+            openModal('dashboard');
+        }
+
+        // This function sends your assessment data to the cloud
+        function saveReportToDatabase(overallScore, vitals, risks) {
+            const user = window.auth.currentUser; // Check if the user is logged in
+
+            if (user) {
+                // Create a path in the database: reports/USER_ID
+                const reportListRef = window.dbRef(window.db, 'reports/' + user.uid);
+
+                // Generate a new unique ID for this specific entry
+                const newReportRef = window.dbPush(reportListRef);
+
+                // Save the detailed breakdown to that unique ID
+                window.dbSet(newReportRef, {
+                    score: Math.round(overallScore),
+                    vitals: vitals,
+                    risks: {
+                        diabetes: risks.diabetes.level,
+                        hypertension: risks.hypertension.level,
+                        cardio: risks.cardiovascular.level
+                    },
+                    timestamp: new Date().toLocaleString() // Saves the exact date and time
+                }).then(() => {
+                    console.log("Health insights successfully saved to your profile.");
+                });
+            } else {
+                console.log("No user logged in. Results are temporary.");
+            }
+        }
+
+        // --- STEP 3: FETCHING DATA FROM CLOUD ---
+        async function loadUserHistory(uid) {
+            const list = document.getElementById('historyList');
+            const section = document.getElementById('historySection');
+
+            // 1. Point to the specific user's folder in the database
+            const reportRef = window.dbRef(window.db, 'reports/' + uid);
+
+            // 2. Import the 'get' tool to fetch the data
+            const { get } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js");
+
+            get(reportRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    section.style.display = 'block'; // Make the history section visible
+                    let html = "";
+
+                    // 3. Loop through every report found in the database
+                    snapshot.forEach((child) => {
+                        const data = child.val();
+                        html += `
+                <div style="background: var(--bg-surface); padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-weight:700; color:var(--primary); font-size: 1.1rem;">Score: ${data.score}%</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">${data.timestamp}</div>
+                    </div>
+                    <div style="text-align: right; font-size: 0.8rem;">
+                        BMI: ${data.vitals ? Math.round(data.vitals.bmi) : 'N/A'}
+                    </div>
+                </div>`;
+                    });
+                    list.innerHTML = html;
+                } else {
+                    section.style.display = 'none'; // Hide section if no history exists
+                }
+            });
+        }
+
+
+        // --- DIET PLANNER LOGIC ---
+        async function handleNutritionPlan() {
+            const input = document.getElementById('dietInput').value;
+            const resultBox = document.getElementById('dietResult');
+            const btn = document.querySelector('button[onclick="handleNutritionPlan()"]');
+
+            if (!input.trim()) {
+                alert("Please enter a request first.");
+                return;
+            }
+
+            const originalText = btn.innerText;
+            btn.innerText = "Thinking... 🧠";
+            btn.disabled = true;
+            resultBox.innerHTML = "<i>Consulting our nutrition AI...</i>";
+
+            const API_KEY = "AIzaSyBAy4S6pCKYLgGLCMDkkUzyUG3jmVnuEhY";
+            const MODEL_NAME = "gemini-2.5-flash";
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+
+            try {
+                const prompt = `You are an expert nutritionist. Based on this request: "${input}", provide a structured diet plan.
+Return ONLY a valid JSON array (no markdown, no code fences) with exactly 4 objects, each with these keys:
+- "title": The meal name (e.g., "Breakfast", "Lunch", "Dinner", "Snacks")
+- "emoji": A relevant food emoji
+- "items": An array of 3-4 specific food suggestions
+- "tip": A short pro-tip for that meal
+
+Example format:
+[{"title":"Breakfast","emoji":"🍳","items":["Oatmeal with berries","Greek yogurt","Green tea"],"tip":"Eat within 1 hour of waking."}]`;
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ role: "user", parts: [{ text: prompt }] }],
+                        generationConfig: { maxOutputTokens: 1500 }
+                    })
+                };
+
+                const res = await fetch(API_URL, requestOptions);
+                if (!res.ok) throw new Error(`API Error: ${res.status}`);
+                const data = await res.json();
+
+                if (data.candidates && data.candidates[0].content) {
+                    let text = data.candidates[0].content.parts[0].text;
+
+                    // Try to parse the JSON
+                    // Clean potential markdown code fences
+                    text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+
+                    try {
+                        const meals = JSON.parse(text);
+                        const colors = ['#00d4aa', '#a855f7', '#3b82f6', '#f472b6']; // Green, Purple, Blue, Pink
+
+                        let html = '';
+                        meals.forEach((meal, index) => {
+                            const color = colors[index % colors.length];
+                            html += `
+                            <div style="border-left: 4px solid ${color}; background: var(--bg-body); padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                    <h5 style="font-size:1.1rem; font-weight:700; margin:0; color:var(--text-main);">${meal.emoji} ${meal.title}</h5>
+                                    <span style="font-size:0.7rem; font-weight:700; padding:4px 10px; border-radius:100px; background:rgba(${color === '#00d4aa' ? '0,212,170' : color === '#a855f7' ? '168,85,247' : color === '#3b82f6' ? '59,130,246' : '244,114,182'},0.15); color:${color}; text-transform:uppercase;">
+                                        MEAL ${index + 1}
+                                    </span>
+                                </div>
+                                <ul style="margin: 10px 0 10px 20px; color: var(--text-muted);">
+                                    ${meal.items.map(item => `<li style="margin-bottom:5px;">${item}</li>`).join('')}
+                                </ul>
+                                <div style="font-size:0.85rem; color:${color}; font-weight:600;">
+                                    💡 ${meal.tip}
+                                </div>
+                            </div>`;
+                        });
+                        resultBox.innerHTML = html;
+                    } catch (parseError) {
+                        // Fallback: just display the text nicely
+                        text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                        resultBox.innerHTML = `<div style="background: var(--bg-body); padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary);">${text}</div>`;
+                    }
+                } else {
+                    resultBox.innerHTML = "<span style='color:var(--risk-high)'>Could not get a response. Please try again.</span>";
+                }
+
+            } catch (error) {
+                console.error(error);
+                resultBox.innerHTML = `<span style='color:var(--risk-high)'>Error: ${error.message}. Please try again.</span>`;
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+    <!-- Chatbot -->
+    <button class="chatbot-toggler">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0V0z" fill="none" />
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"
+                fill="currentColor" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0V0z" fill="none" />
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+                fill="currentColor" />
+        </svg>
+    </button>
+
+    <div class="chatbot">
+        <header>
+            <h2>HealthBuddy 💬</h2>
+            <span class="close-btn">×</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <p>Hi there 👋<br>I'm HealthBuddy. How can I assist you with your health today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <input type="file" id="pdf-upload" accept=".pdf" style="display:none;">
+            <label for="pdf-upload" id="upload-btn" title="Upload Prescription PDF"
+                style="cursor:pointer; font-size:1.3rem; display:flex; align-items:center; color:var(--text-muted); transition:0.2s;">📎</label>
+            <textarea placeholder="Ask me something..." spellcheck="false" required></textarea>
+            <span id="send-btn" class="material-symbols-rounded">➤</span>
+        </div>
+    </div>
+
+    <!-- Link JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Set worker src for PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <!-- Chatbot CSS Embedded -->
+    <style>
+        /* Chatbot Toggler (Floating Button) */
+        .chatbot-toggler {
+            position: fixed;
+            bottom: 30px;
+            right: 35px;
+            outline: none;
+            border: none;
+            height: 60px;
+            width: 60px;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            transition: var(--transition-bounce);
+            z-index: 9999;
+        }
+
+        .chatbot-toggler:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+        }
+
+        .chatbot-toggler svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+            transition: all 0.3s ease;
+        }
+
+        body.show-chatbot .chatbot-toggler {
+            transform: rotate(90deg);
+        }
+
+        body.show-chatbot .chatbot-toggler svg:first-child,
+        .chatbot-toggler svg:last-child {
+            display: none;
+        }
+
+        body.show-chatbot .chatbot-toggler svg:last-child {
+            display: block;
+        }
+
+        /* Chatbot Main Window */
+        .chatbot {
+            position: fixed;
+            right: 35px;
+            bottom: 100px;
+            width: 420px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.5);
+            transform-origin: bottom right;
+            transition: var(--transition-bounce);
+            z-index: 9999;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.show-chatbot .chatbot {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        /* Header */
+        .chatbot header {
+            padding: 16px 20px;
+            position: relative;
+            text-align: center;
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbot header h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chatbot header .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            cursor: pointer;
+            display: block;
+            font-size: 1.5rem;
+        }
+
+        /* Chatbox */
+        .chatbot .chatbox {
+            overflow-y: auto;
+            height: 400px;
+            padding: 20px 20px 80px;
+            background: var(--bg-body);
+        }
+
+        .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 25px;
+        }
+
+        .chatbox .chat {
+            display: flex;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .chatbox .outgoing {
+            justify-content: flex-end;
+            margin-left: 20%;
+        }
+
+        .chatbox .incoming {
+            margin-right: 20%;
+        }
+
+        .chatbox .chat p {
+            white-space: pre-wrap;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            max-width: 100%;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            line-height: 1.5;
+        }
+
+        .chatbox .outgoing p {
+            background: var(--primary);
+            border-radius: 18px 18px 4px 18px;
+        }
+
+        .chatbox .incoming p {
+            background: var(--bg-surface);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 18px 18px 18px 4px;
+        }
+
+        .chatbox .incoming span {
+            width: 32px;
+            height: 32px;
+            color: #fff;
+            align-self: flex-end;
+            background: var(--primary);
+            text-align: center;
+            line-height: 32px;
+            border-radius: 4px;
+            margin: 0 10px 7px 0;
+            display: none;
+        }
+
+        /* Chat Input */
+        .chatbot .chat-input {
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-surface);
+            padding: 10px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chat-input textarea {
+            height: 55px;
+            width: 100%;
+            border: none;
+            outline: none;
+            resize: none;
+            max-height: 180px;
+            padding: 15px 15px 15px 0;
+            font-size: 0.95rem;
+            background: transparent;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-input span {
+            align-self: flex-end;
+            color: var(--primary);
+            cursor: pointer;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            visibility: visible;
+            font-size: 1.35rem;
+            transition: 0.2s;
+        }
+
+        .chat-input span:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-input textarea:valid~span {
+            visibility: visible;
+        }
+
+        /* Response Formatting */
+        .chatbox .incoming p ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .chatbox .incoming p b {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Thinking Animation (Simple Dot Pulse) */
+        .dot-pulse {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            height: 24px;
+        }
+
+        .dot-pulse div {
+            width: 6px;
+            height: 6px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            animation: pulse-dots 1.5s infinite ease-in-out;
+        }
+
+        .dot-pulse div:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dot-pulse div:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes pulse-dots {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 490px) {
+            .chatbot {
+                right: 0;
+                bottom: 0;
+                height: 100%;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .chatbot .chatbox {
+                height: 90%;
+                padding: 25px 15px 100px;
+            }
+
+            .chatbot .chat-input {
+                padding: 5px 15px;
+            }
+
+            .chatbot header span {
+                display: block;
+            }
+        }
+    </style>
+
+    <!-- Chatbot JS Embedded -->
+    <script>
+        const chatbotToggler = document.querySelector(".chatbot-toggler");
+        const closeBtn = document.querySelector(".chatbot header .close-btn");
+        const chatbox = document.querySelector(".chatbox");
+        const chatInput = document.querySelector(".chat-input textarea");
+        const sendChatBtn = document.querySelector(".chat-input span");
+
+        let userMessage = null;
+        let inputInitHeight = 0; // Initialize later
+
+        // --- CONFIGURATION ---
+        // ⚠️ SECURITY WARNING: In a real production app, never expose your API key in frontend code.
+        const API_KEY = "AIzaSyBAy4S6pCKYLgGLCMDkkUzyUG3jmVnuEhY"; // Consider hiding this via ENV variables if possible
+        const MODEL_NAME = "gemini-2.5-flash";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+
+        // System Instructions for the Chatbot
+        const SYSTEM_INSTRUCTION = `
+        You are HealthBuddy 💬, a highly knowledgeable and empathetic AI health assistant.
+
+        STRICT MEDICAL-ONLY RULE:
+        You must answer ONLY medical, healthcare, wellness, nutrition, and fitness-related questions.
+        You must strictly REFUSE to answer any questions about:
+        - Coding, programming, technology
+        - Finance, stocks, crypto
+        - Politics, religion, social issues
+        - General knowledge, homework, casual chai (unless health-context)
+        - Dating, entertainment, movies
+
+        REFUSAL RESPONSE:
+        If a user asks a non-medical question, you must respond EXACTLY with:
+        "I'm HealthBuddy 💬. I can only help with medical or health-related questions."
+        Do not apologize or explain further. Just say that sentence.
+
+        SAFETY DISCLAIMER:
+        - You are an AI, not a doctor.
+        - Do NOT provide medical diagnoses.
+        - Do NOT prescribe medications.
+        - ALWAYS recommend consulting a healthcare professional for serious concerns.
+        - Provide educational, preventive, and supportive guidance suitable for a general audience.
+
+        TONE:
+        - Professional, warm, encouraging, and clear.
+        - Use formatting (bullet points, bold text) to make answers readable.
+        `;
+
+        const createChatLi = (message, className) => {
+            const chatLi = document.createElement("li");
+            chatLi.classList.add("chat", className);
+            let chatContent = className === "outgoing" ? `<p></p>` : `<p></p>`;
+            chatLi.innerHTML = chatContent;
+            chatLi.querySelector("p").textContent = message;
+            return chatLi;
+        }
+
+        const generateResponse = async (chatElement) => {
+            const messageElement = chatElement.querySelector("p");
+
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [
+                        { role: "user", parts: [{ text: SYSTEM_INSTRUCTION }] },
+                        { role: "model", parts: [{ text: "Understood. I am HealthBuddy. I will answer only medical and health-related questions." }] },
+                        { role: "user", parts: [{ text: userMessage }] }
+                    ],
+                    generationConfig: { maxOutputTokens: 500 }
+                })
+            };
+
+            try {
+                const res = await fetch(API_URL, requestOptions);
+                if (!res.ok) throw new Error(`API Error: ${res.status}`);
+                const data = await res.json();
+
+                if (data.candidates && data.candidates[0].content) {
+                    let responseText = data.candidates[0].content.parts[0].text;
+                    let formattedText = responseText
+                        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                        .replace(/\* (.*?)\n/g, '• $1\n');
+                    messageElement.innerHTML = formattedText;
+                } else {
+                    messageElement.textContent = "I'm sorry, I couldn't generate a response. Please try again.";
+                }
+            } catch (error) {
+                console.error("Chatbot Error:", error);
+                messageElement.textContent = `Oops! Something went wrong. (${error.message || "Connection Error"})`;
+            } finally {
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+            }
+        }
+
+        const handleChat = () => {
+            userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            chatInput.value = "";
+            chatInput.style.height = `${inputInitHeight}px`;
+
+            chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+
+            setTimeout(() => {
+                const incomingChatLi = createChatLi("Thinking...", "incoming");
+                chatbox.appendChild(incomingChatLi);
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+                generateResponse(incomingChatLi);
+            }, 600);
+        }
+
+        // Initialize Height after DOM load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Basic check if elemenst exist to avoid errors if chatbot not rendered
+            if (chatInput) {
+                inputInitHeight = chatInput.scrollHeight;
+            }
+        });
+
+        // --- PDF HANDLING (Client-Side) ---
+        const pdfUploadInput = document.getElementById('pdf-upload');
+
+        const readFileAsArrayBuffer = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsArrayBuffer(file);
+            });
+        };
+
+        const extractTextFromPDF = async (arrayBuffer) => {
+            // Ensure pdfjsLib is available
+            if (typeof pdfjsLib === 'undefined') {
+                console.error("PDF.js library is not loaded.");
+                return "";
+            }
+            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+            let fullText = "";
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                const pageText = textContent.items.map(item => item.str).join(" ");
+                fullText += pageText + "\n";
+            }
+            return fullText;
+        };
+
+        if (pdfUploadInput) {
+            pdfUploadInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                if (file.type !== 'application/pdf') {
+                    alert('Please upload a PDF file.');
+                    return;
+                }
+
+                chatbox.appendChild(createChatLi(`📄 Uploaded: ${file.name}`, "outgoing"));
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+
+                const thinkingLi = createChatLi("Reading your prescription...", "incoming");
+                chatbox.appendChild(thinkingLi);
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+
+                try {
+                    const arrayBuffer = await readFileAsArrayBuffer(file);
+                    const extractedText = await extractTextFromPDF(arrayBuffer);
+
+                    if (!extractedText || extractedText.trim().length < 20) {
+                        thinkingLi.querySelector("p").textContent = "I couldn't read the text in this PDF. It might be an image scan.";
+                        return;
+                    }
+
+                    const analysisPrompt = `
+                    You are HealthBuddy, a medical document analyzer. A user has uploaded a prescription or medical report.
+                    DOCUMENT CONTENT: ${extractedText.substring(0, 8000)}
+                    STRICT RULES:
+                    - Summarize the document.
+                    - Explain medications.
+                    - Highlight warnings.
+                    - Recommend professional consultation.
+                    `;
+
+                    thinkingLi.querySelector("p").textContent = "Analyzing content...";
+
+                    const requestOptions = {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            contents: [{ role: "user", parts: [{ text: analysisPrompt }] }],
+                            generationConfig: { maxOutputTokens: 1000 }
+                        })
+                    };
+
+                    const res = await fetch(API_URL, requestOptions);
+                    if (!res.ok) throw new Error(`Analysis Error: ${res.status}`);
+                    const data = await res.json();
+                    const responseText = data.candidates[0].content.parts[0].text;
+                    let formattedText = responseText
+                        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                        .replace(/\* (.*?)\n/g, '• $1\n');
+
+                    thinkingLi.querySelector("p").innerHTML = formattedText;
+
+                } catch (error) {
+                    console.error("PDF Error:", error);
+                    thinkingLi.querySelector("p").textContent = `Oops! Failed to analyze PDF. (${error.message})`;
+                } finally {
+                    chatbox.scrollTo(0, chatbox.scrollHeight);
+                    pdfUploadInput.value = '';
+                }
+            });
+        }
+
+        if (chatInput) {
+            chatInput.addEventListener("input", () => {
+                chatInput.style.height = `${inputInitHeight}px`;
+                chatInput.style.height = `${chatInput.scrollHeight}px`;
+            });
+
+            chatInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+                    e.preventDefault();
+                    handleChat();
+                }
+            });
+        }
+
+        if (sendChatBtn) sendChatBtn.addEventListener("click", handleChat);
+        if (closeBtn) closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+        if (chatbotToggler) chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+    </script>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+</body>
+
+</html>
