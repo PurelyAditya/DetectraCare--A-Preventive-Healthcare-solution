@@ -2,6 +2,8 @@
 
 Hey! This is DetectraCare – a health risk assessment tool I built to help people understand their health better before problems arise.
 
+# Url-https://detectracare.netlify.app/
+
 ## What it does
 
 - **Health Check** – Fill in your vitals, lifestyle habits, and symptoms. The app calculates your risk for diabetes, heart disease, hypertension, and mental health issues using evidence-based scoring.
