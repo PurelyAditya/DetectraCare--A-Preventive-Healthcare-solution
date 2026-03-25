@@ -1,6 +1,6 @@
 # DetectraCare 🏥
 
-Hey! This is DetectraCare – a health risk assessment tool I built to help people understand their health better before problems arise.
+Hey! This is DetectraCare – a health risk assessment tool we built to help people understand their health better before problems arise.
 
 # Try it now--->https://detectracare.netlify.app/
 
